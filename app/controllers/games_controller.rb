@@ -1,9 +1,9 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: %i[show index]
   # GET /games or /games.json
   def index
-    @games = Game.all
+    @games = Game.all.order(created_at: :desc)
   end
 
   # GET /games/1 or /games/1.json
