@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  enum role: [:user, :admin]
+
   # makes user name case-insensitive
   validates :username, presence: true, uniqueness: {case_sensitive: false}
 
