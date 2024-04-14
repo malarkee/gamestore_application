@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  
+  # only load pages for admin users
+  authenticated :user, ->(user) {user.admin?} do
+    get 'admin', to: 'admin#index'
+    get 'admin/games'
+    get 'admin/reviews'
+    get 'admin/users'
+    get 'admin/show_game'
+  end
+
   get 'users/profile'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -8,6 +18,7 @@ Rails.application.routes.draw do
 
   get '/u/:id', to: 'users#profile', as: 'user'
   get 'about', to: 'pages#about'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
