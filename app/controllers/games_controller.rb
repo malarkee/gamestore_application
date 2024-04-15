@@ -12,11 +12,20 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    @game = Game.new
+    # redirect to home if user is not an admin
+    if not current_user.admin?
+      redirect_to(root_path)
+    else
+      @game = Game.new
+    end
   end
 
   # GET /games/1/edit
   def edit
+    # redirect to home if user is not an admin
+    if not current_user.admin?
+      redirect_to(root_path)
+    end
   end
 
   # POST /games or /games.json

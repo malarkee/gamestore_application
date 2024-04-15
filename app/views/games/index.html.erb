@@ -11,5 +11,7 @@
       </p>
     <% end %>
   </div>
-  <%= link_to "New game", new_game_path, class:'btn btn-primary'%>
+  <% if current_user and current_user.admin? %>
+    <%= link_to "New game", new_game_path, class:'btn btn-primary'%>
+  <% end %>
 </div>
