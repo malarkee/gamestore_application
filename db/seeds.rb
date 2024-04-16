@@ -7,3 +7,16 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+User.create(email: 'johndoe@email.com',
+name:'John',
+password: 'password',
+password_confirmation: 'password')
+
+Game.create(title: 'The Witcher 3',
+desc: 'You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. Your current contract? Tracking down Ciri — the Child of Prophecy, a living weapon that can alter the shape of the world.',
+publisher: 'CD PROJECT RED',
+developer: 'CD PROJECT RED',
+genre: 'Fantasy',
+platform: 'PC',
+age_rating: 'M')

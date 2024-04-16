@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  resources :games
+  resources :games do
+    resources :comments
+  end
 
   get '/u/:username', to: 'users#profile', as: 'user'
   get 'about', to: 'pages#about'
