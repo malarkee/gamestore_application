@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 <div class="container">
   <%= render @game %>
 
@@ -9,4 +8,15 @@
       <%= button_to "Destroy this game", @game, method: :delete, class:'btn btn-danger'%>
     <%end%>
   </div>
+</div>
+
+<div class="container">
+  <%= render 'comments/form',
+  game: @game,
+  comment: @game.comments.build,
+  submit_label: "Reply" %>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', game: @game,
+    comment: comment %>
+  <% end %>
 </div>
