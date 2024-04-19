@@ -1,8 +1,11 @@
 <p style="color: green"><%= notice %></p>
-
-<div class ="container">
+<div class="container">
   <h1>Games</h1>
-
+</div>
+<br>
+<%= render "games/search_form" %>
+<br>
+<div class ="container">
   <div id="games">
     <% @games.each do |game| %>
       <%= render game %>
