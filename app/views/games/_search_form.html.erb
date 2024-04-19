@@ -1,46 +1,62 @@
-<%= search_form_for @q do |f| %>
-    <div class ="container">
-        <div class ="search">
-            <div class="field">
-                <%= f.label "Title" %>
-                <br>
-                <%= f.search_field :title_cont %>
-            </div>
+<div class ="container">
+    <%= search_form_for @q do |f| %>
+        <div class="field">
+            <%= f.search_field :title_or_publisher_or_developer_or_genre_or_platform_or_age_rating_cont, placeholder: "Search..." %>
+            <%= f.submit "Search" %>
+        </div>
+    <% end %>
+</div>
 
-            <div class="field">
-                <%= f.label "Publisher" %>
-                <br>
-                <%= f.search_field :publisher_cont %>
-            </div>
+<div class ="container">
+    <div data-controller="toggle">
+        <button class="btn btn-secondary btn-sm" data-action="click->toggle#toggle">Advanced Search</button>
+        <div id ="searchbox" class="d-none" data-toggle-target="searchreveal">
+            <%= search_form_for @q do |f| %>
+                <div class ="container">
+                    <div class ="search">
+                        <div class="field">
+                            <%= f.label "Title" %>
+                            <br>
+                            <%= f.search_field :title_cont %>
+                        </div>
 
-            <div class="field">
-                <%= f.label "Developer" %>
-                <br>
-                <%= f.search_field :developer_cont %>
-            </div>
+                        <div class="field">
+                            <%= f.label "Publisher" %>
+                            <br>
+                            <%= f.search_field :publisher_cont %>
+                        </div>
 
-            <div class="field">
-                <%= f.label "Genre" %>
-                <br>
-                <%= f.search_field :genre_cont %>
-            </div>
+                        <div class="field">
+                            <%= f.label "Developer" %>
+                            <br>
+                            <%= f.search_field :developer_cont %>
+                        </div>
 
-            <div class="field">
-                <%= f.label "Platform" %>
-                <br>
-                <%= f.search_field :platform_cont %>
-            </div>
+                        <div class="field">
+                            <%= f.label "Genre" %>
+                            <br>
+                            <%= f.search_field :genre_cont %>
+                        </div>
 
-            <div class="field">
-                <%= f.label "Age Rating" %>
-                <br>
-                <%= f.search_field :age_rating_cont %>
-            </div>
+                        <div class="field">
+                            <%= f.label "Platform" %>
+                            <br>
+                            <%= f.search_field :platform_cont %>
+                        </div>
 
-            <div class="actions">
-                <%= f.submit "Search" %>
-            </div>
+                        <div class="field">
+                            <%= f.label "Age Rating" %>
+                            <br>
+                            <%= f.search_field :age_rating_cont %>
+                        </div>
+
+                        <div class="actions">
+                            <%= f.submit "Search" %>
+                        </div>
+                    </div>
+                </div>
+
+            <% end %>
         </div>
     </div>
-
-<% end %>
+</div>
