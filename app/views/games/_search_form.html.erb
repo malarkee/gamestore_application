@@ -1,0 +1,46 @@
+<%= search_form_for @q do |f| %>
+    <div class ="container">
+        <div class ="search">
+            <div class="field">
+                <%= f.label "Title" %>
+                <br>
+                <%= f.search_field :title_cont %>
+            </div>
+
+            <div class="field">
+                <%= f.label "Publisher" %>
+                <br>
+                <%= f.search_field :publisher_cont %>
+            </div>
+
+            <div class="field">
+                <%= f.label "Developer" %>
+                <br>
+                <%= f.search_field :developer_cont %>
+            </div>
+
+            <div class="field">
+                <%= f.label "Genre" %>
+                <br>
+                <%= f.search_field :genre_cont %>
+            </div>
+
+            <div class="field">
+                <%= f.label "Platform" %>
+                <br>
+                <%= f.search_field :platform_cont %>
+            </div>
+
+            <div class="field">
+                <%= f.label "Age Rating" %>
+                <br>
+                <%= f.search_field :age_rating_cont %>
+            </div>
+
+            <div class="actions">
+                <%= f.submit "Search" %>
+            </div>
+        </div>
+    </div>
+
+<% end %>
