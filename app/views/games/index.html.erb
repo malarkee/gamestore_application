@@ -1,20 +1,49 @@
 <p style="color: green"><%= notice %></p>
-<div class="container">
-  <h1>Games</h1>
-</div>
+
+<h1 class="text-center"> Games </h1>
+<div class="text-center"><%= link_to "New Game", new_game_path, class:"btn btn-primary"%></div>
+
 <br>
 <%= render "games/search_form" %>
 <br>
-<div class ="container">
-  <div id="games">
+
+<div class="container">
+  <div class="grid" id="games">
+    
     <% @games.each do |game| %>
-      <%= render game %>
-      <p>
-        <%= link_to "Show this game", game %>
-      </p>
+
+      <div class="box">
+        <% if game.image.attached? %>
+          <%= link_to image_tag(game.image, :class => 'img-box'), game, style: 'color: black;' %>
+        <% else %>
+          <%= link_to image_tag('default.png', :class => 'img-box'), game, style: 'color: black;' %>
+        <% end %>
+
+        <div class="container">
+          <h6 style="text-align: left;"><%= link_to game.title.truncate(32), game %></h6>
+          
+          <div class="row">
+            <div class="col"><p class="box-info-left"><%= game.platform %></p></div>
+            <div class="col"><p class="box-info-right"><%= game.release_date.year %></p></div>
+          </div>
+
+        </div>
+      </div>
+
     <% end %>
+
   </div>
-  <% if current_user and current_user.admin? %>
-    <%= link_to "New game", new_game_path, class:'btn btn-primary'%>
-  <% end %>
 </div>
+
+
+<br />
+
+
+
+
+
+
+
+
+
+

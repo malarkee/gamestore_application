@@ -1,22 +1,30 @@
-<div class="container">
-  <%= render @game %>
 
+<div class="container">
   <div>
-    <%= link_to "Back to games", games_path, class:'btn btn-primary'%> 
-    <%if current_user and current_user.admin?%>
-      <%= link_to "Edit this game", edit_game_path(@game), class:'btn btn-primary'%>
-      <%= button_to "Destroy this game", @game, method: :delete, class:'btn btn-danger'%>
-    <%end%>
+    
+    <br />
+    <%= render @game %>
+    <br />
+
+    <%= link_to "Back to games", games_path, class:'btn btn-primary' %> 
+    <% if current_user and current_user.admin? %>
+      <%= link_to "Edit this game", edit_game_path(@game), class:'btn btn-primary' %>
+      <%= button_to "Destroy this game", @game, method: :delete, class:'btn btn-danger' %>
+    <% end %>
+    
+    <br />
+    <h3> Reviews / Comments </h3>
+
+
+    <% @comments.each do |comment| %>
+      <%= render 'comments/comment', game: @game, comment: comment %>
+    <% end %>
+    
+    <%= render 'comments/form', game: @game, comment: @game.comments.build, submit_label: "Reply" %>
+    
   </div>
 </div>
 
-<div class="container">
-  <%= render 'comments/form',
-  game: @game,
-  comment: @game.comments.build,
-  submit_label: "Reply" %>
-  <% @comments.each do |comment| %>
-    <%= render 'comments/comment', game: @game,
-    comment: comment %>
-  <% end %>
-</div>
+
+
+

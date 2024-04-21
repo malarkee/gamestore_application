@@ -1,32 +1,48 @@
 <div id="<%= dom_id game %>">
-  <h2><%= game.title %></h2>
-  <p>
-    <strong>Desc:</strong>
-    <%= game.desc %>
-  </p>
 
-  <p>
-    <strong>Publisher:</strong>
-    <%= game.publisher %>
-  </p>
+    <h2><strong><%= game.title %></strong></h2>
+    
+    <p><%= game.desc %></p>
 
-  <p>
-    <strong>Developer:</strong>
-    <%= game.developer %>
-  </p>
+    <p>
+      <strong> Release Date: </strong>
+      <%= game.release_date %>
+    </p>
 
-  <p>
-    <strong>Genre:</strong>
-    <%= game.genre %>
-  </p>
+    <p>
+      <strong> Publisher: </strong>
+      <%= game.publisher %>
+    </p>
 
-  <p>
-    <strong>Platform:</strong>
-    <%= game.platform %>
-  </p>
+    <p>
+      <strong> Developer: </strong>
+      <%= game.developer %>
+    </p>
+    
+    <p>
+      <strong> Genre: </strong>
+      <%= game.genre %>
+    </p>
 
-  <p>
-    <strong>Age rating:</strong>
-    <%= game.age_rating %>
-  </p>
-</div>
+    <p>
+      <strong> Platform: </strong>
+      <%= game.platform %>
+    </p>
+
+    <p>
+      <strong> Age Rating: </strong>
+      <%= game.age_rating %>
+    </p>
+
+    <br />
+
+    <%= link_to image_tag(game.img_to_thumbnail), game.image if game.image.attached?%>
+
+    <hr />
+
+    <% game.pictures.each do |pic|%>
+      <%= link_to image_tag(game.pic_to_thumbnail(pic)), pic %>
+    <% end %>
+
+  </div>
+ </div> 
