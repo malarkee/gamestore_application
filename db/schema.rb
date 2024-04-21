@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_224822) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_21_173803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_224822) do
     t.string "age_rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "release_date"
+  end
+
+  create_table "played_games", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_played_games_on_game_id"
+    t.index ["user_id"], name: "index_played_games_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -92,4 +102,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_224822) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "games"
   add_foreign_key "comments", "users"
+  add_foreign_key "played_games", "games"
+  add_foreign_key "played_games", "users"
 end
