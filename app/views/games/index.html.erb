@@ -3,7 +3,10 @@
 <h1 class="text-center"> Games </h1>
 <div class="text-center"><%= link_to "New Game", new_game_path, class:"btn btn-primary"%></div>
 
-<br />
+<br>
+<%= render "games/search_form" %>
+<br>
+
 <div class="container">
   <div class="grid" id="games">
     
