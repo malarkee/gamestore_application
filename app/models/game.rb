@@ -1,6 +1,5 @@
 class Game < ApplicationRecord
 
-
     validates :title, presence: true, length: { maximum: 70 }
     validates :release_date, presence: true, comparison: { 
         greater_than_or_equal_to: Date.new(1970, 01, 01), 
@@ -14,6 +13,7 @@ class Game < ApplicationRecord
     has_many :played_games
     has_many :users, through: :played_games
 
+    has_many :reviews, dependent: :destroy
 
     has_one_attached :image
     has_many_attached :pictures
@@ -32,6 +32,11 @@ class Game < ApplicationRecord
 
     def self.ransackable_associations(auth_object = nil)
         ["comments", "played_games", "users"]
+    end
+
+    def update_final_rating
+        mean = reviews.average(:rating)
+        update_column(:average_score, mean)
     end
 
 

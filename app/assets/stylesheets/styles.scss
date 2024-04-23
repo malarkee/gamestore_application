@@ -1,25 +1,59 @@
-.grid {
+.grid-4 {
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 15px;
     padding: 10px;
+    justify-content: center;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 15px;
+    padding: 10px;
+    justify-content: center;
 }
 
 .box {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    
+
     width: 325px;
     padding: 5px;
 
     text-align: center;
 }
 
+.desc-box-8 {
+    
+    width: 500px;
+    padding: 5px;
+
+    border: 2px solid aqua;
+    background-color: white;
+    color: black;
+}
+
+.desc-box-2 {
+
+    width: 125px;
+    padding: 5px;
+
+    border: 1px solid aqua;
+    background-color:aqua;
+
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: left;
+    color: black;
+}
+
 .img-box {
     width: 300px;
     height: 200px;
     object-fit: cover;
+
+    margin-bottom: 15px;
 
     border: 1px solid;
     box-shadow: 4px 4px black;
@@ -29,16 +63,23 @@
     box-shadow: 4px 4px rgba(8, 5, 194, 0.555);
 }
 
-div.container-custom {
-    padding: 10px;
-}
-
 .box-info-left {
     font-size: 14px;
     font-weight: bold;
     font-variant: small-caps;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
     text-align: left;
+    color:rgb(0, 110, 255);
+}
+
+.box-info-center {
+    font-size: 14px;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+    text-align: center;
     color:rgb(0, 110, 255);
 }
 
@@ -47,7 +88,39 @@ div.container-custom {
     font-weight: bold;
     font-variant: small-caps;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
     text-align: right;
     color:rgb(0, 110, 255);
 }
 
+.title {
+    font-size: 3em;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.content-parent {
+    display: flex;
+    margin-left: 40px;
+}
+.content-wide {
+    flex: 1;
+    margin-right: 40px;
+}
+.content-narrow {
+    width: 400px;
+}
+
+.info-table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.comment-box {
+    border: 1px solid black;
+    padding: 1em;
+    margin: 1em;
+}

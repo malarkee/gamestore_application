@@ -1,11 +1,12 @@
-<div class="comment-<%= comment.id %> container"
-    style="border: 1px solid black; padding: 1em; margin: 1em;">
-    <%= comment.user.email %><br />
+<div id="comment-<%= comment.id%>" class="comment-box">
+    
+    <%= link_to comment.user.username, user_path(comment.user.username), class:"text-decoration-none" %><br />
     <% if (comment.updated_at - comment.created_at) > 1 %>
         <span>edited <%= time_ago_in_words(comment.updated_at) %> ago</span>
     <% else %>
         <span>posted <%= time_ago_in_words(comment.created_at) %> ago</span>
     <% end %>
+
     <% if current_user == comment.user %>
         <div class="btn-group float-end">
             <%= link_to "Edit", nil, remote: true, class:"btn btn-primary",
@@ -18,10 +19,7 @@
             <%= button_to "Delete", [game, comment], class:"btn btn-danger", method: :delete %>
         </div>
         <div id="edit-form-<%= comment.id %>" class="d-none">
-            <%= render 'comments/form',
-            game: @game,
-            comment: comment,
-            submit_label: "Update" %>
+            <%= render 'comments/form', game: @game, comment: comment, submit_label: "Update" %>
         </div>
     <% end %>
     <hr />
