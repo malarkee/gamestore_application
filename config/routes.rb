@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :games do
+    resources :reviews
+  end
+
   get '/u/:username', to: 'users#profile', as: 'user'
   get 'about', to: 'pages#about'
 

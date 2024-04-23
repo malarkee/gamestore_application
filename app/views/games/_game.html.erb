@@ -1,48 +1,130 @@
-<div id="<%= dom_id game %>">
+<div id="<% dom_id game %>">
+  <h1 class="title"><%= game.title.upcase %></h1>
 
-    <h2><strong><%= game.title %></strong></h2>
+  <hr />
+  <div class="content-parent">
+
+    <!-- Left side of page -->
+    <div class="content-wide"> 
+      <table class="info-table">
+        <tbody>
+          <tr>
+            <th class="desc-box-2"> Release Date </th>
+            <td class="desc-box-8"> <%= game.release_date %> </td>
+          </tr>
+          <tr>
+            <th class="desc-box-2"> Platform(s) </th>
+            <td class="desc-box-8"> <%= game.platform %> </td>
+          </tr>
+          <tr>
+            <th class="desc-box-2"> Genre </th>
+            <td class="desc-box-8"> <%= game.genre %> </td>
+          </tr>
+          <tr>
+            <th class="desc-box-2"> Publisher(s) </th>
+            <td class="desc-box-8"> <%= game.publisher %> </td>
+          </tr>
+          <tr>
+            <th class="desc-box-2"> Developer(s) </th>
+            <td class="desc-box-8"> <%= game.developer %> </td>
+          </tr>
+          
+          <tr>
+            <th class="desc-box-2"> Age Rating </th>
+            <td class="desc-box-8"> <%= game.age_rating %> </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr />
+      <!-- description formatting -->
+      <h3>Description of <%= game.title %></h3>
+      <div class="container">
+        <%= game.desc %>
+      </div>
+      <hr />
+
+      <br />
+      
+      <div class="content-parent">
+        <!-- Rating Display-->
+        <div class="content-wide", style="text-align: right;">
+
+          <% whole_number = game.average_score.round.to_i%>
+          <% half_number = (((game.average_score * 2).round.to_f / 2.0) - whole_number) * 2 %>
+          <% remaining = 5 - (whole_number + half_number.to_i) %>
+
+          <% whole_number.times do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
+              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+            </svg>
+          <% end %>
+
+          <% half_number.to_i.times do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="blue" class="bi bi-star-half" viewBox="0 0 16 16">
+              <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
+            </svg>
+          <% end %>
+
+          <% remaining.times do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+              <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+            </svg>
+          <% end %>
+
+          <p style="padding: 10px; margin-left: 50%;"><%= "%.2f" % game.average_score %> / 5.00  - <%= pluralize(game.reviews_count, "vote") %> </p>
+        </div>
+
+        <!-- Rating Form -->
+        <div class="content-wide">
+          <% if current_user %>
+            <%= render 'reviews/form', game: @game, review: @game.reviews.build, submit_label: "Rate" %>
+          <% else %>
+            <h5 style="padding: 10px;"><i> Must be logged in to rate games.</i></h5>
+          <% end %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="container">
+        <h3> Comments and Reviews </h3>
+        <% if @comments.count == 0 %>
+          <h6 style="padding: 10px; text-align: center;"><i>There is no comment nor review for this game at the moment.</i></h6>
+        <% end %>
+
+        <!-- TO DO: ADD LIMIT 10 TO COMMENTS PARTIAL : maybe add rankings for comments? -->
+        <% @comments.each do |comment| %>
+          <%= render 'comments/comment', game: @game, comment: comment %>
+        <% end %>
+        <br />
+        <hr />
+      </div>
+
+      <div class="container">
+        <% if current_user %>
+          <h3> Leave a comment/review! </h3>
+          <%= render 'comments/form', game: @game, comment: @game.comments.build, submit_label: "Reply" %>
+        <% else %>
+          <h5 style="padding: 10px; text-align: center;"><i> Must be logged in to leave comments/reviews.</i></h5>
+        <% end %>
+      </div>
+    </div>
     
-    <p><%= game.desc %></p>
-
-    <p>
-      <strong> Release Date: </strong>
-      <%= game.release_date %>
-    </p>
-
-    <p>
-      <strong> Publisher: </strong>
-      <%= game.publisher %>
-    </p>
-
-    <p>
-      <strong> Developer: </strong>
-      <%= game.developer %>
-    </p>
-    
-    <p>
-      <strong> Genre: </strong>
-      <%= game.genre %>
-    </p>
-
-    <p>
-      <strong> Platform: </strong>
-      <%= game.platform %>
-    </p>
-
-    <p>
-      <strong> Age Rating: </strong>
-      <%= game.age_rating %>
-    </p>
-
-    <br />
-
-    <%= link_to image_tag(game.img_to_thumbnail), game.image if game.image.attached?%>
-
-    <hr />
-
-    <% game.pictures.each do |pic|%>
-      <%= link_to image_tag(game.pic_to_thumbnail(pic)), pic %>
-    <% end %>
-
+    <!-- Right side of page: shows screenshots -->
+    <div class="content-narrow"> 
+      <h3 class="text-center" style="margin: 15px;"> Captures and Screenshots </h3>
+      <% if game.image.attached? %>
+        <div style="text-align: center;">
+          <%= link_to image_tag(game.img_to_thumbnail, :class => 'img-box'), game.image, style: 'color: black;'%>
+          <% game.pictures.each do |pic|%>
+            <%= link_to image_tag(game.pic_to_thumbnail(pic), :class => 'img-box'), pic, style: 'color: black;' %>
+          <% end %>
+        </div>
+      <% else %>
+        <br />
+        <h4 style="text-align: center;"> Unfortunately, this game has no provided screenshots. </h4>
+      <% end %> 
+    </div>
   </div>
- </div> 
+</div>
