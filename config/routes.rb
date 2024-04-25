@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :played_games
   
   # only load pages for admin users
   authenticated :user, ->(user) {user.admin?} do
