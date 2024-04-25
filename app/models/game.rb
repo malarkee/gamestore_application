@@ -10,7 +10,7 @@ class Game < ApplicationRecord
     }
 
     has_many :comments, dependent: :destroy
-    has_many :played_games
+    has_many :played_games, dependent: :destroy
     has_many :users, through: :played_games
 
     has_many :reviews, dependent: :destroy
@@ -35,11 +35,13 @@ class Game < ApplicationRecord
     end
 
     def update_final_rating
+
         if reviews.count == 0
             mean = 0
         else 
             mean = reviews.average(:rating)
         end
         update_column(:average_score, mean)
+
     end
 end
