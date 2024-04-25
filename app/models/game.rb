@@ -35,9 +35,11 @@ class Game < ApplicationRecord
     end
 
     def update_final_rating
-        mean = reviews.average(:rating)
+        if reviews.count == 0
+            mean = 0
+        else 
+            mean = reviews.average(:rating)
+        end
         update_column(:average_score, mean)
     end
-
-
 end

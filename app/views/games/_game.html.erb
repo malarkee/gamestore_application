@@ -48,7 +48,7 @@
       
       <div class="content-parent">
         <!-- Rating Display-->
-        <div class="content-wide", style="text-align: right;">
+        <div class="content-wide", style="text-align: center;">
 
           <% whole_number = game.average_score.round.to_i%>
           <% half_number = (((game.average_score * 2).round.to_f / 2.0) - whole_number) * 2 %>
@@ -72,13 +72,25 @@
             </svg>
           <% end %>
 
-          <p style="padding: 10px; margin-left: 50%;"><%= "%.2f" % game.average_score %> / 5.00  - <%= pluralize(game.reviews_count, "vote") %> </p>
+          <p style="padding: 10px;"><%= "%.2f" % game.average_score %> / 5.00  - <%= pluralize(game.reviews_count, "vote") %> </p>
         </div>
 
         <!-- Rating Form -->
         <div class="content-wide">
+          
           <% if current_user %>
-            <%= render 'reviews/form', game: @game, review: @game.reviews.build, submit_label: "Rate" %>
+          
+            <!-- user has a review -->
+            <% if Review.exists?(user_id: current_user, game_id: @game) %>
+              <% @reviews.where(user_id: current_user.id, game_id: @game.id).each do |review| %>
+                <%= render 'reviews/delete_review', game: @game, review: review%>
+              <% end %>
+            <!-- user does not have a review -->
+            <% else %>
+              <%= render 'reviews/form', game: @game, review: @game.reviews.build, submit_label: "Rate" %>
+            <% end %>
+
+          <!-- user is not logged in -->
           <% else %>
             <h5 style="padding: 10px;"><i> Must be logged in to rate games.</i></h5>
           <% end %>
