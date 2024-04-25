@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: %i[show index]
+  before_action :authenticate_user!, except: %i[show index ]
   # GET /games or /games.json
   def index
     @q = Game.ransack(params[:q])
@@ -65,6 +65,23 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_url, notice: "Game was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def add # add to list
+    a = PlayedGame.create(user_id: current_user.id, game_id: params[:id])
+    if a.game_id != nil
+      redirect_back fallback_location: root_path, notice: "Game added!"
+    end
+  end
+
+  def remove
+    played_game = current_user.played_games.find_by(game_id: params[:id])
+    if played_game.present?
+      played_game.destroy
+      redirect_back fallback_location: root_path, notice: "Game removed from your list."
+    else
+      redirect_back fallback_location: root_path, alert: "Game not found in your list."
     end
   end
 
