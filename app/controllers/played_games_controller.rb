@@ -1,5 +1,6 @@
 class PlayedGamesController < ApplicationController
   before_action :set_played_game, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ index ]
 
   # GET /played_games or /played_games.json
   def index
@@ -66,5 +67,10 @@ class PlayedGamesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def played_game_params
       params.require(:played_game).permit(:user_id, :game_id)
+    end
+
+    # Determine whose list this is
+    def set_user
+      @user = User.find_by_username(params[:username])
     end
 end

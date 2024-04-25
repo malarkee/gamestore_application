@@ -1,11 +1,12 @@
 <div class="container">
     
     <br>
-    <h1><%= @user.username%></h1>
+    <h1><%= @user.username%>'s Profile</h1>
     <p>Find me in app/views/users/profile.html.erb</p>
-    <h1>Played Games for <%= @user.username %></h1>
+    <h1>Recently Played <%= link_to "(Full list)", user_list_path(@user.username) %></h1>
     <ul>
-        <% played_games = PlayedGame.where(user_id: @user.id).includes(:game) %>
+        <% played_games = PlayedGame.where(user_id: @user.id).includes(:game)
+                                    .order(created_at: :desc).limit(3) %>
         <% played_games.each do |played_game| %>
             <li>
             <%= link_to played_game.game.title, game_path(played_game.game) %>
