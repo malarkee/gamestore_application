@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   # GET /games/1 or /games/1.json
   def show
     @comments = @game.comments.order(created_at: :desc)
+    @reviews = @game.reviews
   end
 
   # GET /games/new

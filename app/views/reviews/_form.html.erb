@@ -1,5 +1,5 @@
-<%= form_with(model: [game, review]) do |f| %>
-    <div class="container", style="text-align: left;">
+<%= form_with(model: [game, game.reviews.build]) do |f| %>
+    <div class="container", style="text-align: center;">
         <%= f.number_field :rating %>
         <%= f.submit submit_label, class: "btn btn-primary mt-1" %>
     </div>

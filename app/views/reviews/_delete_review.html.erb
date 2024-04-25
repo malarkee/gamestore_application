@@ -1,0 +1,4 @@
+<div class="container" style="text-align: center;">
+    <p><strong>Your Current Rating: <%= review.rating.to_f %></strong></p>
+    <%= button_to "Delete Rating", [game, review], method: :delete, class:'btn btn-danger mt-1' %>
+</div>
