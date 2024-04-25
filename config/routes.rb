@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  get '/u/:username/list', to: 'played_games#index', as: 'user_list'
+
   post 'games/add/:id', to: 'games#add', as: 'add_game'
   delete 'games/remove/:id', to: 'games#remove', as: 'remove_game'
 

@@ -1,6 +1,7 @@
 <div class="container">
     
     <br>
+
     <h1><%= @user.username%></h1>
     <p>Joined on <%= @user.created_at.to_date %></p>
     
@@ -18,7 +19,7 @@
                     <th class="desc-box-4"> Date Added </th>
                 <tr>
                 
-                <% played_games = PlayedGame.where(user_id: @user.id).includes(:game) %>
+                <% played_games = PlayedGame.where(user_id: @user.id).includes(:game).order(created_at: :desc).limit(5) %>
                 <% played_games.each do |played_game| %>
                     <tr>
                         <th class="desc-box-8"> <%= link_to played_game.game.title, game_path(played_game.game), class:"text-decoration-none"%> </th>
