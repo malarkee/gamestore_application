@@ -42,6 +42,5 @@ class Game < ApplicationRecord
             mean = reviews.average(:rating)
         end
         update_column(:average_score, mean)
-
     end
 end

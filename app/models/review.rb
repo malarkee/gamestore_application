@@ -11,7 +11,9 @@ class Review < ApplicationRecord
   after_commit :update_score, on: [:create, :update, :destroy]
 
   def update_score
-    game.update_final_rating
+    if Game.exists?(id: game_id)
+      game.update_final_rating
+    end
   end
 
 end

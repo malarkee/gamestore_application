@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-    before_action :authenticate_user!
     before_action :set_game
+    before_action :authenticate_user!
 
     def create
         @review = @game.reviews.create(review_params)

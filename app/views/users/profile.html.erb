@@ -57,15 +57,4 @@
     </div>
     
     <hr />
-    <ul>
-
-        <% played_games = PlayedGame.where(user_id: @user.id).includes(:game) %>
-        <% played_games.each do |played_game| %>
-            <li>
-            <%= link_to played_game.game.title.truncate(50), game_path(played_game.game) %>
-                (Added <%= played_game.created_at.to_date %>)
-            </li>
-        <% end %>
-    </ul>
-
 </div>
