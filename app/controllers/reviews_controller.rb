@@ -14,6 +14,12 @@ class ReviewsController < ApplicationController
             redirect_to game_url(@game)
         end
     end
+    
+    def destroy
+        @review = @game.reviews.find(params[:id])
+        @review.destroy
+        redirect_to game_url(@game)
+    end
 
     def update
         @review = @game.reviews.find(params[:id])
