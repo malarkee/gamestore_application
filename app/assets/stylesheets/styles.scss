@@ -35,6 +35,19 @@
     color: black;
 }
 
+.desc-box-4 {
+    
+    width: 250px;
+    padding: 5px;
+
+    border: 1px solid aqua;
+    background-color:aqua;
+
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: black;
+}
+
 .desc-box-2 {
 
     width: 125px;
@@ -103,10 +116,12 @@
     display: flex;
     margin-left: 40px;
 }
+
 .content-wide {
     flex: 1;
     margin-right: 40px;
 }
+
 .content-narrow {
     width: 400px;
 }
@@ -116,6 +131,16 @@
     border-spacing: 0 1em;
 
     margin-left: auto; 
+    margin-right: auto;
+}
+
+.list {
+
+    padding: 5px;
+
+    border-collapse: separate;
+    border-spacing: 0 1em;
+
     margin-right: auto;
 }
 
