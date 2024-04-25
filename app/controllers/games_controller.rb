@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: %i[show index ]
+  before_action :authenticate_user!, except: %i[show index]
   # GET /games or /games.json
   def index
     @q = Game.ransack(params[:q])
@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   # GET /games/1 or /games/1.json
   def show
     @comments = @game.comments.order(created_at: :desc)
+    @reviews = @game.reviews
   end
 
   # GET /games/new
