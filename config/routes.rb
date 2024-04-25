@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  post 'games/add/:id', to: 'games#add', as: 'add_game'
+  delete 'games/remove/:id', to: 'games#remove', as: 'remove_game'
+
   get '/u/:username', to: 'users#profile', as: 'user'
   get 'about', to: 'pages#about'
 

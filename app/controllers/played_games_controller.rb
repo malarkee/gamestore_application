@@ -52,7 +52,7 @@ class PlayedGamesController < ApplicationController
     @played_game.destroy!
 
     respond_to do |format|
-      format.html { redirect_to played_games_url, notice: "Played game was successfully destroyed." }
+      format.html { redirect_to played_games_url, notice: "Removed from list." }
       format.json { head :no_content }
     end
   end

@@ -32,7 +32,6 @@ class ReviewsController < ApplicationController
         end
     end
 
-
     private 
     def set_game
         @game = Game.find(params[:game_id])

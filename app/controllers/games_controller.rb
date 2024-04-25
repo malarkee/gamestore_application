@@ -69,6 +69,23 @@ class GamesController < ApplicationController
     end
   end
 
+  def add # add to list
+    a = PlayedGame.create(user_id: current_user.id, game_id: params[:id])
+    if a.game_id != nil
+      redirect_back fallback_location: root_path, notice: "Game added!"
+    end
+  end
+
+  def remove
+    played_game = current_user.played_games.find_by(game_id: params[:id])
+    if played_game.present?
+      played_game.destroy
+      redirect_back fallback_location: root_path, notice: "Game removed from your list."
+    else
+      redirect_back fallback_location: root_path, alert: "Game not found in your list."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
