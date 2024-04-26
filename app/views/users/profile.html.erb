@@ -7,7 +7,7 @@
     
     <hr />
     
-    <h2>Recently Played</h2>
+    <h2><%= @user.username %>'s Recently Played</h2>
     <div class="container">
         <table class="list">
             <tbody>
@@ -55,6 +55,6 @@
             </tbody>
         </table>
     </div>
-    
+    <%= link_to "Full List", user_list_path(@user.username) %>
     <hr />
 </div>

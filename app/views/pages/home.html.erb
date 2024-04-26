@@ -1,7 +1,27 @@
 <div class="container">
     
     <br>
-    <h1>Home</h1>
-    <p>Find me in app/views/pages/home.html.erb</p>
+    <% if current_user %>
+        <div class="yourlist_format">
+            <%= link_to "Your List", user_list_path(current_user.username) %>
+        </div>
+    <% end %>
+    <%= image_tag("banner.png", alt: "Welcome Banner", style: "width: 100%; height: auto; display: block;") %>
+
+    <table class="home-table">
+        <tbody>
+            <tr>
+                <th class="home-box-1"> Welcome to MyGamesList! </th>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>A website for searching, discussing, and sharing games and game lists</p>
+    <% if current_user %>
+        <p>Navigate to "Games" to search for games, leave comments and ratings, or add them to your list!</p>
+        <p>Navigate to "About" to see contributors</p>
+    <% else %>
+        <p><b>Create a profile or sign in to access full website functionality!</b></p>
+    <% end %>
 
 </div>

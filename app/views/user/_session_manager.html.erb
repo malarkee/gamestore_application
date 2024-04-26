@@ -10,12 +10,8 @@
             
             <% if current_user.admin? %>
                 <li><hr class="dropdown-divider"></li>
-
                 <li><h5 style="color:rgba(255, 0, 0, 0.75)" class="dropdown-header">Admin</h5></li>
-                
                 <li><%= link_to "Edit Games", games_path, class:'dropdown-item' %></li>
-                <li><%= link_to "Edit Reviews", admin_reviews_path, class:'dropdown-item' %></li>
-                <li><%= link_to "Edit Users", admin_users_path, class:'dropdown-item' %></li>
             <% end %>
 
             <li><hr class="dropdown-divider"></li>
