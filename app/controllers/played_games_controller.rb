@@ -1,5 +1,5 @@
 class PlayedGamesController < ApplicationController
-  before_action :set_played_game, only: %i[ show edit update destroy ]
+  before_action :set_played_game, only: %i[ show update destroy ]
   before_action :set_user, only: %i[ index ]
 
   # GET u/:username/list
