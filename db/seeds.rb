@@ -9,16 +9,53 @@
 #   end
 
 
-# 10.times do |x|
-#     User.create(email: "#{x}@mail.com", username: "Mister#{x}", password:"password-#{x}", password_confirmation: "password-#{x}")
-# end
+10.times do |x|
+    User.create(email: "#{x}@mail.com", username: "Mister#{x}", password:"password-#{x}", password_confirmation: "password-#{x}")
+end
 
+User.create(email: "johndoe@example.com", username: "John", password: "password", password_confirmation: "password", role: "1")
 
-15.times do |y|
+Game.create(
+    title: 'The Witcher 3',
+    desc: 'You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. 
+    Your current contract? Tracking down Ciri — the Child of Prophecy, a living weapon that can alter the shape of the world.',
+    publisher: 'CD PROJECT RED',
+    developer: 'CD PROJECT RED',
+    genre: 'Fantasy',
+    platform: 'PC',
+    age_rating: 'M',
+    release_date: '19 May 2015'
+)
+
+Game.create(
+    title: 'Portal 2', 
+    desc: 'Portal 2: A mind-bending puzzle game where players wield a portal gun to navigate through test chambers and outsmart 
+    an AI antagonist. With witty dialogue, clever level design, and cooperative multiplayer, it\'s a masterpiece of innovation and humor.',
+    publisher: 'Valve', 
+    developer: 'Valve', 
+    genre: 'Puzzle', 
+    platform: 'PC', 
+    age_rating: 'E10+', 
+    release_date: '18 Apr 2011'
+)
+
+Game.create(
+    title: 'Mario Kart 8 Deluxe',
+    desc: 'Mario Kart 8 Deluxe: Race into action with iconic Nintendo characters in this fast-paced, multiplayer racing game. 
+    With dazzling graphics, exciting tracks, and a plethora of items to thwart opponents, it\'s the ultimate party experience on wheels.',
+    publisher: 'Nintendo',
+    developer: 'Nintendo EAP',
+    genre: 'Kart Racing',
+    platform: 'Nintendo Switch',
+    age_rating: 'E',
+    release_date: '28 Apr 2017'
+)
+
+10.times do |y|
 
     2.times do
 
-        num = rand(27..36)
+        num = rand(0..2)
         opinion = rand(10)
 
         reply = rand(0...10)
@@ -48,45 +85,8 @@
             Comment.create(user_id: "#{y}", game_id: num, body: "pepsi cola")
         end
 
+        rating = rand(1..5)
+        Rating.create(user_id: "#{y}", game_id: num, rating: "#{rating}")
+
     end
 end
-
-
-
-# Comment.create(user_id: x, game_id: y, body: "Hello")
-
-# Game.create(
-#     title: 'The Witcher 3',
-#     desc: 'You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. 
-#     Your current contract? Tracking down Ciri — the Child of Prophecy, a living weapon that can alter the shape of the world.',
-#     publisher: 'CD PROJECT RED',
-#     developer: 'CD PROJECT RED',
-#     genre: 'Fantasy',
-#     platform: 'PC',
-#     age_rating: 'M',
-#     release_date: '19 May 2015'
-# )
-
-# Game.create(
-#     title: 'Portal 2', 
-#     desc: 'Portal 2: A mind-bending puzzle game where players wield a portal gun to navigate through test chambers and outsmart 
-#     an AI antagonist. With witty dialogue, clever level design, and cooperative multiplayer, it\'s a masterpiece of innovation and humor.',
-#     publisher: 'Valve', 
-#     developer: 'Valve', 
-#     genre: 'Puzzle', 
-#     platform: 'PC', 
-#     age_rating: 'E10+', 
-#     release_date: '18 Apr 2011'
-# )
-
-# Game.create(
-#     title: 'Mario Kart 8 Deluxe',
-#     desc: 'Mario Kart 8 Deluxe: Race into action with iconic Nintendo characters in this fast-paced, multiplayer racing game. 
-#     With dazzling graphics, exciting tracks, and a plethora of items to thwart opponents, it\'s the ultimate party experience on wheels.',
-#     publisher: 'Nintendo',
-#     developer: 'Nintendo EAP',
-#     genre: 'Kart Racing',
-#     platform: 'Nintendo Switch',
-#     age_rating: 'E',
-#     release_date: '28 Apr 2017'
-# )
