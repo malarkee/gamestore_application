@@ -67,9 +67,9 @@
         <!-- Rating Display-->
         <div class="content-wide", style="text-align: center;">
 
-          <% whole_number = game.average_score.round.to_i%>
+          <% whole_number = game.average_score.floor %>
           <% half_number = (((game.average_score * 2).round.to_f / 2.0) - whole_number) * 2 %>
-          <% remaining = 5 - (whole_number + half_number.to_i) %>
+          <% remaining = (5 - (whole_number + (half_number).to_i)) %>
 
           <% whole_number.times do %>
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="blue" class="bi bi-star-fill" viewBox="0 0 16 16">
