@@ -16,3 +16,13 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: min-content;
 }
+
+.yourlist_format {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.home_body {
+    margin-top: 20px;
+}
